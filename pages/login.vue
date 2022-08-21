@@ -6,9 +6,9 @@
           <validation-observer ref="form" v-slot="{ invalid }">
             <form @submit.prevent="handleSubmit">
               <div class="login-head">
-                <h1 class="display-1 font-weight-bold">Selamat Datang</h1>
+                <h1 class="display-1 font-weight-bold">Welcome</h1>
                 <p class="text-gray font-weight-light mt-2">
-                  Masukkan email dan password anda untuk mengakses akun anda
+                  Entry Random Email and Password To Access
                 </p>
               </div>
 
@@ -27,20 +27,20 @@
               </div>
 
               <div class="login-button">
-                <BaseButton :disabled="invalid" block x-large @click="submitLogin">Masuk</BaseButton>
+                <BaseButton :disabled="invalid" block x-large @click="submitLogin">Submit</BaseButton>
               </div>
 
               <div class="login-footer mt-5 mb-n5">
                 <p>
-                  Lupa password?
-                  <nuxt-link to="/forgot-password" class="text-primary font-weight-bold">Klik di sini</nuxt-link>
+                  Forget Password?
+                  <nuxt-link to="/forgot-password" class="text-primary font-weight-bold">Click Here</nuxt-link>
                 </p>
               </div>
 
               <div class="login-footer mt-5 mb-n5">
                 <p>
                   Login Referral?
-                  <nuxt-link to="/referral/login" class="text-primary font-weight-bold">Klik di sini</nuxt-link>
+                  <nuxt-link to="/referral/login" class="text-primary font-weight-bold">Click Here</nuxt-link>
                 </p>
               </div>
 
