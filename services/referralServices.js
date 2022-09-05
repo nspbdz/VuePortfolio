@@ -1,4 +1,4 @@
-import Api from '~/Api/api.js'
+import Api from '~/api/Api.js'
 
 const base = 'v1/referral'
 

@@ -1,4 +1,5 @@
-import Api from '@/Api/api.js'
+import Api from '~/api/Api.js'
+
 
 export default ({ $axios }, inject) => {
   Api.$axios = $axios
