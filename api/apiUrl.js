@@ -2,4 +2,4 @@
  * BASE URLS
  */
 
-export const PREFIX = '/v4/'
+export const PREFIX = '/api/'

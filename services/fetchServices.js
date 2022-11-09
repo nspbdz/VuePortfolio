@@ -1,20 +1,18 @@
 import Api from '~/api/Api.js'
-
+const base = 'v1'
 
 class FetchServices {
-
-async getFetch(payload) {
-    return await Api.doGet('anime?q='+payload.search, payload)
-      .then((res) => res)
-      .catch((err) => err)
+  async GetFetch({ request }) {
+    const res = await Api.doGet(`${base}/products?offset=0&limit=10
+    `, request)
+    console.debug('GET FETCH', res)
+    return res
   }
-
-  // https://api.jikan.moe/v4/genres/anime
-  // https://api.jikan.moe/v4/top/anime
-  async getCarousel(payload) {
-    return await Api.doGet('top/anime', payload)
-      .then((res) => res)
-      .catch((err) => err)
+  async GetProductById({ request }) {
+    console.log(request, "requestan")
+    const res = await Api.doGet(`${base}/products/`+request.id)
+    console.debug('Get User ', res)
+    return res
   }
 }
 

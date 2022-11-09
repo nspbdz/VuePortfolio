@@ -1,49 +1,51 @@
 import fetchServices from '~/services/fetchServices'
+import { showFailedPopup } from '@/helpers/Utils'
 
 export const state = () => ({
-  items: '',
-  carousel: '',
+  items:[],
+  id:[],
 })
 
 export const getters = {
   items: (state) => state.items,
-  carousel: (state) => state.carousel,
+  id: (state) => state.id,
 }
 
 export const mutations = {
   SET_ITEMS(state, items) {
     state.items = items
   },
-  SET_CAROUSEL(state, items) {
-    state.carousel = items
+  SET_ID(state, items) {
+    state.id = items
   },
 }
 
 export const actions = {
-  getFetch(context, payload) {
-    return new Promise((resolve, reject) => {
-      fetchServices
-        .getFetch(payload)
-        .then((res) => {
-          context.commit('SET_ITEMS', res)
-          resolve(res)
-        })
-        .catch((err) => {
-          reject(err)
-        })
-    })
+  async getFetch(context, payload) {
+    try {
+      const res = await fetchServices.GetFetch({})
+      context.commit('SET_ITEMS', res)
+      return res
+    } catch (error) {
+      showFailedPopup({ msg: error })
+      console.error(error)
+      throw error
+    }
   },
-  getCarousel(context, payload) {
-    return new Promise((resolve, reject) => {
-      fetchServices
-        .getCarousel(payload)
-        .then((res) => {
-          context.commit('SET_CAROUSEL', res)
-          resolve(res)
-        })
-        .catch((err) => {
-          reject(err)
-        })
-    })
+  async getProductById(context, payload) {
+    console.log(payload.value);
+    const request = {
+      id: payload.value,
+    }
+    try {
+      const res = await fetchServices.GetProductById({request})
+      context.commit('SET_ID', res)
+      console.log(res)
+      return res
+    } catch (error) {
+      showFailedPopup({ msg: error })
+      console.error(error)
+      throw error
+    }
   },
 }

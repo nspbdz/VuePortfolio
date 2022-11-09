@@ -2,48 +2,41 @@
   <section class="login h-100 d-flex justify-center">
     <div class="my-auto">
       <v-container fluid>
-        <BaseCard :width="width" class="text-center mt-10 pa-15">
-          <validation-observer ref="form" v-slot="{ invalid }">
-            <form @submit.prevent="handleSubmit">
-              <div class="login-head">
-                <h1 class="display-1 font-weight-bold">Welcome</h1>
+        <BaseCard  class="mt-10 pa-15">
+          <validation-observer ref="observer" slim>
+            <form @submit.prevent="handleSubmit(invalid)">
+              <div class="login-head text-center">
+                <h1 class="display-1 font-weight-bold">Selamat Datang di MyCommerce</h1>
                 <p class="text-gray font-weight-light mt-2">
-                  Entry Random Email and Password To Access
+                  Masukkan email dan password  anda untuk mengakses akun anda
                 </p>
               </div>
 
               <div class="login-content mt-10 mb-5">
                 <div class="email">
-                  <BaseInput ref="email" v-model="login.email" outlined label="Email" placeholder="Masukkan email anda"
-                    prepend-inner-icon="mdi-email" rules="required|email" @keyup.enter.native="submitLogin"></BaseInput>
+                  <BaseInput id="email" v-model="login.email" name="Email" placeholder="Email*"
+                    prepend-inner-icon="mdi-email" rules="required|email" @keyup.enter.native="handleSubmit()">
+                  </BaseInput>
                 </div>
                 <div class="password">
-                  <BaseInput ref="password" v-model="login.password" outlined prepend-inner-icon="mdi-lock"
+                  <BaseInput id="password" v-model="login.password" name="Password" prepend-inner-icon="mdi-lock"
                     :append-icon="passwordType ? 'mdi-eye' : 'mdi-eye-off'" :type="passwordType ? 'text' : 'password'"
-                    label="Password" placeholder="Masukkan password anda" rules="required"
-                    @click:append="passwordType = !passwordType" @keyup.enter.native="submitLogin">
+                    placeholder="Password*" rules="required" @click:append="passwordType = !passwordType"
+                    @keyup.enter.native="handleSubmit()">
                   </BaseInput>
                 </div>
               </div>
 
               <div class="login-button">
-                <BaseButton :disabled="invalid" block x-large @click="submitLogin">Submit</BaseButton>
+                <BaseButton block x-large type="submit">Masuk</BaseButton>
               </div>
 
-              <div class="login-footer mt-5 mb-n5">
+              <div class="login-footer mt-5 mb-n5 text-center">
                 <p>
-                  Forget Password?
-                  <nuxt-link to="/forgot-password" class="text-primary font-weight-bold">Click Here</nuxt-link>
+                  Lupa password?
+                  <nuxt-link to="/forgot-password" class="text-primary font-weight-bold">Klik di sini</nuxt-link>
                 </p>
               </div>
-
-              <div class="login-footer mt-5 mb-n5">
-                <p>
-                  Login Referral?
-                  <nuxt-link to="/referral/login" class="text-primary font-weight-bold">Click Here</nuxt-link>
-                </p>
-              </div>
-
             </form>
           </validation-observer>
         </BaseCard>
@@ -66,33 +59,19 @@ export default defineComponent({
 
     const passwordType = ref(false)
 
-    const submitLogin = () => {
+    const observer = ref(null)
+    const handleSubmit = async () => {
+      const isValid = await observer.value.validate();
+      if (!isValid) return;
       router.push('/auth/home')
     }
 
     return {
       login,
       passwordType,
-      submitLogin,
+      handleSubmit,
+      observer
     }
-  },
-
-  computed: {
-    // eslint-disable-next-line vue/return-in-computed-property
-    width() {
-      switch (this.$vuetify.breakpoint.name) {
-        case 'xs':
-          return 320
-        case 'sm':
-          return 400
-        case 'md':
-          return 600
-        case 'lg':
-          return 600
-        case 'xl':
-          return 700
-      }
-    },
   },
 })
 </script>

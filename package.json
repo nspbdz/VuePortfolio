@@ -2,7 +2,7 @@
   "name": "starter-template-nuxt-vuetify-cms",
   "version": "1.0.0",
   "private": true,
-  "author": "baihakitanjung",
+  "author": "alfian",
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",

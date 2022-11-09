@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar flat app>
+  <v-app-bar dense flat app>
     <v-app-bar-nav-icon @click="handleSidebar"></v-app-bar-nav-icon>
 
     <PageTitle>{{ pageTitle || 'Page' }}</PageTitle>
@@ -8,35 +8,30 @@
 
     <v-btn icon @click="toggleTheme">
       <v-icon>{{
-        $vuetify.theme.dark
-          ? 'mdi-moon-waxing-crescent'
-          : 'mdi-white-balance-sunny'
+          $vuetify.theme.dark
+            ? 'mdi-moon-waxing-crescent'
+            : 'mdi-white-balance-sunny'
       }}</v-icon>
     </v-btn>
 
-    <v-btn icon>
-      <v-badge content="1" value="1" bottom color="red" overlap>
-        <v-icon>mdi-bell</v-icon>
-      </v-badge>
-    </v-btn>
 
-    <v-btn icon class="mr-3">
-      <v-icon>mdi-cog</v-icon>
-    </v-btn>
 
     <v-menu bottom min-width="200px" rounded offset-y>
       <template #activator="{ on }">
         <v-btn icon x-large v-on="on">
-          <v-avatar color="brown" size="48">
-            <span class="white--text text-h5">{{ user.initials }}</span>
+          <v-avatar color="brown" size="24">
+            <v-img src="https://i0.wp.com/global.ac.id/wp-content/uploads/2015/04/speaker-3-v2.jpg?fit=768%2C768&ssl=1">
+            </v-img>
           </v-avatar>
         </v-btn>
       </template>
       <v-card>
         <v-list-item-content class="justify-center">
           <div class="mx-auto text-center">
-            <v-avatar color="brown">
-              <span class="white--text text-h5">{{ user.initials }}</span>
+            <v-avatar color="brown" size="24">
+              <v-img
+                src="https://i0.wp.com/global.ac.id/wp-content/uploads/2015/04/speaker-3-v2.jpg?fit=768%2C768&ssl=1">
+              </v-img>
             </v-avatar>
             <h3 class="mt-3">{{ user.fullName }}</h3>
             <p class="text-caption mt-1">{{ user.email }}</p>

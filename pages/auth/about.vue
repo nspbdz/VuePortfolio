@@ -3,7 +3,6 @@
     <v-row>
       <v-col>
         <h1 class="text-center">❤️ This is My Example Web  ❤️</h1>
-        <h3 class="text-center"> API url: https://api.jikan.moe </h3>
         <h3 class="text-center"> In this Website I Using Nuxt js  </h3>
       </v-col>
     </v-row>
